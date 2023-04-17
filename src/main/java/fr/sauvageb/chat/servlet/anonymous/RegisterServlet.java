@@ -28,6 +28,11 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
 
+        req.setAttribute("firstname", firstname);
+        req.setAttribute("lastname", lastname);
+        req.setAttribute("username", username);
+        req.setAttribute("email", email);
+
         boolean isInvalid = firstname.isBlank() || lastname.isBlank() || username.isBlank() || password.isBlank() || email.isBlank();
         if (isInvalid) {
             req.setAttribute("form_validation_error", true);
@@ -36,17 +41,17 @@ public class RegisterServlet extends HttpServlet {
                 UserService userService = new UserService();
                 userService.register(username, firstname, lastname, email, password, "");
                 resp.sendRedirect(req.getContextPath() + LoginServlet.URL);
-
+                return;
             } catch (UserAlreadyExistException e) {
                 req.setAttribute("duplicate_user_error", true);
             } catch (Exception e) {
                 req.setAttribute("register_error", true);
+                req.setAttribute("firstname", firstname);
+                req.setAttribute("lastname", lastname);
+                req.setAttribute("username", username);
+                req.setAttribute("email", email);
             }
         }
-        req.setAttribute("firstname", firstname);
-        req.setAttribute("lastname", lastname);
-        req.setAttribute("username", username);
-        req.setAttribute("email", email);
         req.getRequestDispatcher("/WEB-INF/register.jsp").forward(req, resp);
     }
 }
