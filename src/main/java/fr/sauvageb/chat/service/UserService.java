@@ -23,8 +23,13 @@ public class UserService {
         }
     }
 
-    boolean login(String username, String password) {
-        return false;
+    public User login(String username, String password) {
+        User user = userJdbcDao.findByUsername(username);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        } else {
+            return null;
+        }
     }
 
     List<User> fetchAllUsers() {

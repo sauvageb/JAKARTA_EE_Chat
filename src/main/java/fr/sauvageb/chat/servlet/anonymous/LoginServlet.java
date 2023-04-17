@@ -1,5 +1,7 @@
 package fr.sauvageb.chat.servlet.anonymous;
 
+import fr.sauvageb.chat.model.User;
+import fr.sauvageb.chat.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -24,10 +26,12 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
+        UserService userService = new UserService();
+        User user = userService.login(username, password);
 
-        if (username.equals("boris") && password.equals("boris")) {
+        if (user != null) {
             HttpSession session = req.getSession();
-            session.setAttribute("username", "boris");
+            session.setAttribute("username", user.getUsername());
             resp.sendRedirect(req.getContextPath() + "/secured");
         } else {
             req.setAttribute("isError", true);
