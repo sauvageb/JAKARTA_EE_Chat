@@ -37,4 +37,7 @@ public class UserService {
     }
 
 
+    public User fetchUserByUsername(String usernameConnected) {
+        return userJdbcDao.findByUsername(usernameConnected);
+    }
 }
