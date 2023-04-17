@@ -1,4 +1,4 @@
-package com.example.scopes;
+package fr.sauvageb.chat.servlet.secured;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,12 +11,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/secured")
-public class IndexServlet extends HttpServlet {
+@WebServlet(urlPatterns = DashboardServlet.URL)
+public class DashboardServlet extends HttpServlet {
+
+    public static final String URL = "/secured";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/chat.jsp").forward(req, resp);
     }
 
     @Override
@@ -40,6 +42,6 @@ public class IndexServlet extends HttpServlet {
         // Scope HttpSession => durée d'une session (Panier)
         // Scope ServletContext => durée de l'application (Nombre de visiteurs, de pages vues ...stats)
 
-        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/chat.jsp").forward(req, resp);
     }
 }

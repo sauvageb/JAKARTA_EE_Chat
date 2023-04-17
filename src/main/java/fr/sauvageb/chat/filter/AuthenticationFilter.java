@@ -1,5 +1,6 @@
-package com.example.scopes;
+package fr.sauvageb.chat.filter;
 
+import fr.sauvageb.chat.servlet.anonymous.LoginServlet;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -25,7 +26,7 @@ public class AuthenticationFilter extends HttpFilter {
             // Continue la chaine des filtres/navigations
             chain.doFilter(req, resp);
         } else {
-            response.sendRedirect(request.getContextPath() + "/login");
+            response.sendRedirect(request.getContextPath() + LoginServlet.URL);
         }
 
     }

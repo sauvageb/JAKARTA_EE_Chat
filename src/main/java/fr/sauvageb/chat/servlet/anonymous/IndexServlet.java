@@ -1,22 +1,20 @@
-package com.example.scopes;
+package fr.sauvageb.chat.servlet.anonymous;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/secured/logout")
-public class LogoutServlet extends HttpServlet {
+@WebServlet(urlPatterns = IndexServlet.URL)
+public class IndexServlet extends HttpServlet {
+
+    public static final String URL = "/";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        session.invalidate();
-
-        resp.sendRedirect(req.getContextPath() + "/login");
+        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.scopes;
+package fr.sauvageb.chat.servlet.anonymous;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,8 +9,10 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/login")
+@WebServlet(urlPatterns = LoginServlet.URL)
 public class LoginServlet extends HttpServlet {
+
+    public static final String URL = "/login";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,6 +23,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+
 
         if (username.equals("boris") && password.equals("boris")) {
             HttpSession session = req.getSession();

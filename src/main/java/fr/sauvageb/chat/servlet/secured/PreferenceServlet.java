@@ -1,4 +1,4 @@
-package com.example.scopes;
+package fr.sauvageb.chat.servlet.secured;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,8 +9,10 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/secured/preferences")
+@WebServlet(urlPatterns = PreferenceServlet.URL)
 public class PreferenceServlet extends HttpServlet {
+
+    public static final String URL = "/secured/preferences";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
