@@ -36,7 +36,7 @@ public class UserJdbcDao implements UserDao {
         List<User> userList = new ArrayList<>();
 
         Connection connection = ConnectionManager.getInstance();
-        String query = "SELECT id, username, email, password, pictureUrl FROM user";
+        String query = "SELECT id, username, firstname, lastname, email, password, pictureUrl FROM user";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
