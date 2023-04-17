@@ -63,6 +63,9 @@
                 </ul>
             </div>
             <c:if test="${!empty sessionScope.username}">
+                <div class="px-3 text-white">Welcome <a class="text-white"
+                                                        href="${pageContext.request.contextPath}/secured/profil">${sessionScope.username}</a>
+                </div>
                 <a href="${pageContext.request.contextPath}/secured/logout"
                    class="btn btn-outline-primary rounded-circle p-3 lh-1 bg-light" type="button">
                     <svg class="bi" width="24" height="24">
