@@ -42,19 +42,24 @@ public class UserJdbcDao implements UserDao {
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
-                Long id = resultSet.getLong("id");
-                String username = resultSet.getString("username");
-                String firstname = resultSet.getString("firstname");
-                String lastname = resultSet.getString("lastname");
-                String email = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                String pictureUrl = resultSet.getString("pictureUrl");
-                userList.add(new User(id, username, firstname, lastname, email, password, pictureUrl));
+                User u = mapToUser(resultSet);
+                userList.add(u);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return userList;
+    }
+
+    private User mapToUser(ResultSet resultSet) throws SQLException {
+        Long id = resultSet.getLong("id");
+        String username = resultSet.getString("username");
+        String firstname = resultSet.getString("firstname");
+        String lastname = resultSet.getString("lastname");
+        String email = resultSet.getString("email");
+        String password = resultSet.getString("password");
+        String pictureUrl = resultSet.getString("pictureUrl");
+        return new User(id, username, firstname, lastname, email, password, pictureUrl);
     }
 
     @Override
@@ -82,14 +87,7 @@ public class UserJdbcDao implements UserDao {
             statement.setString(1, usernameFind);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                Long id = resultSet.getLong("id");
-                String username = resultSet.getString("username");
-                String firstname = resultSet.getString("firstname");
-                String lastname = resultSet.getString("lastname");
-                String email = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                String pictureUrl = resultSet.getString("pictureUrl");
-                userFound = new User(id, username, firstname, lastname, email, password, pictureUrl);
+                userFound = mapToUser(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
