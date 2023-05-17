@@ -1,4 +1,4 @@
-package fr.sauvageb.chat.dao;
+package fr.sauvageb.chat.dao.base;
 
 
 import java.util.List;

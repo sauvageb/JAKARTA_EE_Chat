@@ -16,8 +16,8 @@
         <h1>Preferences</h1>
 
         <form action="${pageContext.request.contextPath}/secured/preferences" method="post">
-            <div class="form-group mb-2">
-                <label for="color">Background color :</label>
+            <div class="form-group mb-3">
+                <label class="mb-2" for="color">Background color :</label>
                 <select name="colorChoice" id="color" class="form-select">
                     <option value="white">Default</option>
                     <option value="grey">Grey</option>
@@ -26,7 +26,7 @@
                 </select>
             </div>
             <div class="form-group mb-2">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>
